@@ -1,0 +1,36 @@
+name: Notifier PR
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+permissions:
+  pull-requests: write
+  contents: read
+
+jobs:
+  pr-tasks:
+    runs-on: ubuntu-latest
+    env:
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: send discord notification
+        uses: actions/github-script@v6
+        env:
+          # DISCORD_CHANNEL_ID: ${{ secrets.DISCORD_CHANNEL_ID_PR }}
+          BOT_TOKEN: ${{ secrets.BOT_TOKEN_NOTIFIER }}
+          SCRIPT_FULL_PATH: ${{ github.workspace }}/.github/scripts/senders/notifier-pr.js
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const { default: notify } = await import(process.env.SCRIPT_FULL_PATH);
+            const data = JSON.parse(process.env.RESULT_DATA);
+            await notify({ github, context, core, data });
