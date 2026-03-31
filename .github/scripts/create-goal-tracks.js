@@ -89,8 +89,7 @@ export default async ({ github, context, core }) => {
 
     const createdWeekGoals = [];
 
-    // TODO: 테스트 완료 후 .slice(0, 2) 제거
-    for (const weekData of sessionData.schedule.slice(0, 2)) {
+    for (const weekData of sessionData.schedule) {
       const weekTopicsText = weekData.topics
         .map((t) => topicLine(t))
         .join("\n");
