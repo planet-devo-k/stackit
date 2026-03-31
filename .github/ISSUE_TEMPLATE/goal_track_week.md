@@ -9,25 +9,17 @@ labels:
 
 # Goal
 
-**Period**: 2026-0-0 MON ~ 2026-0-0 SUN
-**Description**:
-**Deadline**: 2026-0-0
+**Subject**: {{title}}
+**Period**: {{start_date}} ~ {{end_date}}
+**Deadline**: {{end_date}}
 
-## Topics / This Week Challenges
+## Topics
 
-```
-
-```
+{{topics_text}}
 
 ## Status
 
-<!--
-- [ ] 송시은
-- [ ] 손수진
-- [ ] 전유진
-- [ ] 조인성
-- [ ] 문혜란
--->
+{{members_status_checklist}}
 
 ## Checklist
 

@@ -25,7 +25,7 @@ jobs:
       - name: send discord notification
         uses: actions/github-script@v6
         env:
-          # DISCORD_CHANNEL_ID: ${{ secrets.DISCORD_CHANNEL_ID_PR }}
+          # DISCORD_CHANNEL_ID: ${{ vars.DISCORD_CHANNEL_ID_PR }}
           BOT_TOKEN: ${{ secrets.BOT_TOKEN_NOTIFIER }}
           SCRIPT_FULL_PATH: ${{ github.workspace }}/.github/scripts/senders/notifier-pr.js
         with:

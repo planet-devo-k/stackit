@@ -1,34 +1,30 @@
 export const MEMBERS = [
-  // {
-  //   name: "송시은",
-  //   githubId: "sgoldenbird",
-  //   discordId: "1235595153142710372",
-  // },
-  // {
-  //   name: "손수진",
-  //   githubId: "pappaya109",
-  //   discordId: "347010234562379786",
-  // },
-  // {
-  //   name: "전유진",
-  //   githubId: "yuj2n",
-  //   discordId: "392655134116806676",
-  // },
-  // {
-  //   name: "조인성",
-  //   githubId: "Insung-Jo",
-  //   discordId: "1337108063793975328",
-  // },
+  {
+    name: "송시은",
+    githubId: "sgoldenbird",
+    discordId: "1235595153142710372",
+  },
+  {
+    name: "손수진",
+    githubId: "pappaya109",
+    discordId: "347010234562379786",
+  },
+  {
+    name: "전유진",
+    githubId: "yuj2n",
+    discordId: "392655134116806676",
+  },
+  {
+    name: "조인성",
+    githubId: "Insung-Jo",
+    discordId: "1337108063793975328",
+  },
 ];
 
 export const STUDY_CONFIG = {
   RULES: {
-    WEEKS_PER_SESSION: 10,
-    MIN_REVIEWS_REQUIRED: 2,
-  },
-  URL: {
-    PROGRAMMERS_BASE:
-      "https://school.programmers.co.kr/learn/courses/30/lessons",
+    // WEEKS_PER_SESSION: 10,
+    // MIN_REVIEWS_REQUIRED: 2,
   },
 };
 
@@ -38,22 +34,17 @@ export const GITHUB_CONFIG = {
     IN_PROGRESS: "47fc9ee4",
     DONE: "98236657",
   },
-  MILESTONE: {
-    PROGRAMMERS_ID: 1,
-  },
-  ISSUE: {
-    PROGRAMMERS_NUMBER: 143,
-  },
 };
 
 export const DISCORD_CONFIG = {
   ROLE: {
     MEMBER_ID: "1483764477827485747",
+    // TEAM_ID: "",
   },
 };
 
 export const BOT_CONFIG = {
-  TARGET_CHANNEL_ID: "1481651506372673536",
+  ALERT_CHANNEL_ID: "1488126536400765068",
   MAX_WARNINGS: 5,
   TIMEOUT: {
     MODAL_MS: 5 * 60 * 1000,

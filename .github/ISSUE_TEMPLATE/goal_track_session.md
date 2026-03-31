@@ -1,27 +1,25 @@
 ---
-name: "Goal Track"
+name: "Goal Track Session"
 about: "Use this template for using issues as goal tracking items."
 duration: " weeks"
-title: "`Week ~ Week` "
+title: "`Session: Week0 ~ Week` "
 assignees: "sgoldenbird"
 labels:
   - goal
-  - project
+  - session
 ---
 
 <!-- 이 이슈는 마일스톤으로 대체될 수 있습니다.  -->
 
 # Goal
 
+**Source**: {{source}}
 **Duration**: {{duration}} weeks {{start_date}} ~ {{end_date}}
 **Description**:
-**Deadline**: 2026-0-0 SUN
 
-## Topics
+## Schedule
 
-```
-
-```
+{{schedule_text}}
 
 ## Checklist
 
