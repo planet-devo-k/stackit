@@ -108,7 +108,7 @@ export default async ({ github, context, core }) => {
       const thisWeekGoal = await createIssue({
         github,
         context,
-        title: `\`Week${weekData.week}: ${weekData.title}\``,
+        title: `\`Week${weekData.week}\`: ${weekData.title}`,
         body: weekBody,
         assignees: [ASSIGNEE_ID],
         labels: ["goal", "도감"],
