@@ -3,6 +3,20 @@ name: Notifier PR
 on:
   pull_request:
     types: [opened, synchronize, reopened]
+  workflow_dispatch:
+    inputs:
+      test_pr_title:
+        description: "테스트 PR 제목"
+        default: "테스트 PR 알림"
+        required: false
+      test_pr_url:
+        description: "테스트 PR URL"
+        default: "https://github.com/test/test/pull/0"
+        required: false
+      test_pr_author:
+        description: "테스트 작성자"
+        default: "user"
+        required: false
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.number }}
@@ -25,12 +39,23 @@ jobs:
       - name: send discord notification
         uses: actions/github-script@v6
         env:
-          # DISCORD_CHANNEL_ID: ${{ vars.DISCORD_CHANNEL_ID_PR }}
+          DISCORD_CHANNEL_ID: ${{ vars.DISCORD_CHANNEL_ID_PR }}
           BOT_TOKEN: ${{ secrets.BOT_TOKEN_NOTIFIER }}
           SCRIPT_FULL_PATH: ${{ github.workspace }}/.github/scripts/senders/notifier-pr.js
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
             const { default: notify } = await import(process.env.SCRIPT_FULL_PATH);
-            const data = JSON.parse(process.env.RESULT_DATA);
+            let data = {};
+            if (process.env.RESULT_DATA) {
+              data = JSON.parse(process.env.RESULT_DATA);
+            } else if (context.eventName === 'workflow_dispatch') {
+              data = {
+                pr: {
+                  title: context.payload.inputs.test_pr_title,
+                  html_url: context.payload.inputs.test_pr_url,
+                  user: { login: context.payload.inputs.test_pr_author }
+                }
+              };
+            }
             await notify({ github, context, core, data });
