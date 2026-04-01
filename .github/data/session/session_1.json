@@ -8,6 +8,11 @@
     "start": "2026-04-26",
     "end": "2026-06-28"
   },
+  "deposit": {
+    "amount": 20000,
+    "currency": "KRW",
+    "interest": 0
+  },
   "schedule": [
     {
       "week": 0,
@@ -18,8 +23,8 @@
         "end": "2026-05-02"
       },
       "attendees": [
-        { "name": "홍길동", "status": "absent", "type": "medical" },
-        { "name": "김철수", "status": "late", "type": "authorized" }
+        { "name": "", "status": "absent", "type": "medical" },
+        { "name": "", "status": "late", "type": "authorized" }
       ],
       "topics": [
         { "name": "스터디 개요" },

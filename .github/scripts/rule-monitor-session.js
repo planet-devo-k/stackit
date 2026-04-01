@@ -1,6 +1,6 @@
-import sessionData from "../data/session/session_6.json" with { type: "json" };
-import { MEMBERS, STUDY_CONFIG } from "./utils/constants.js";
+import { MEMBERS } from "./utils/constants.js";
 import { getKSTDateString } from "./utils/date.js";
+import { getLatestSessionData } from "./utils/session.js";
 import { createMarkdownTable } from "./utils/formatter.js";
 import {
   createDiscussion,
@@ -10,155 +10,241 @@ import {
   addLabelByName,
 } from "./utils/github.js";
 
-export default async ({ github, context, core }) => {
-  const { RULES } = STUDY_CONFIG;
-  const { MIN_REVIEWS_REQUIRED } = RULES;
+const PENALTY_PER_ISSUE = 1000;
 
+export default async ({ github, context, core, test }) => {
   try {
-    const nowStrDots = getKSTDateString(new Date());
-    const sessionStart = new Date(sessionData.date.start);
-    const sessionEnd = new Date(sessionData.date.end);
-    const weeks = sessionData.challenges.map((c) => c.week);
+    const sessionData = getLatestSessionData();
+    const nowStr = getKSTDateString(new Date());
+    const sessionEnd = getKSTDateString(new Date(sessionData.date.end));
 
-    if (
-      nowStrDots !== getKSTDateString(sessionEnd) &&
-      context.eventName !== "workflow_dispatch"
-    ) {
+    if (test) {
+      console.log("[테스트 모드] 날짜 체크를 건너뜁니다.");
+    } else if (nowStr !== sessionEnd) {
       console.warn(
-        `오늘은 프로젝트 종료일(${getKSTDateString(sessionEnd)})이 아닙니다. 현재 날짜: ${nowStrDots}. 프로젝트 리포트 생성을 스킵합니다.`,
+        `오늘은 세션 종료일(${sessionEnd})이 아닙니다. 현재 날짜: ${nowStr}. 세션 리포트 생성을 스킵합니다.`,
       );
       return;
     }
 
     console.log(
-      `오늘은 프로젝트 종료일(${sessionData.date.start} ~ ${sessionData.date.end}): 프로젝트 ${sessionData.id} 리포트 작성을 시작합니다.`,
+      `세션 ${sessionData.id} 리포트 작성 시작 (${sessionData.date.start} ~ ${sessionData.date.end})`,
     );
 
-    const repository = await getRepositoryInfo({ github, context });
-    const repoId = repository.id;
-    const discussionCategories = await getDiscussionCategories({
-      github,
-      context,
+    const sessionStart = new Date(sessionData.date.start);
+    const sessionEndDate = new Date(sessionData.date.end);
+    const schedule = sessionData.schedule;
+    const studyWeeks = schedule.filter((s) => s.type === "study");
+    const allWeeks = schedule.map((s) => s.week);
+    const DEPOSIT = sessionData.deposit.amount;
+    const INTEREST = sessionData.deposit.interest || 0;
+
+    // ─── 출석 정보 매핑 (주차별 attendees) ───
+    const attendanceByWeek = {};
+    schedule.forEach((s) => {
+      attendanceByWeek[s.week] = {};
+      (s.attendees || []).forEach((a) => {
+        if (a.name) {
+          attendanceByWeek[s.week][a.name] = a.status;
+        }
+      });
     });
-    const categoryReport = discussionCategories.find((cat) =>
-      cat.name.toLowerCase().includes("report"),
-    );
 
+    // ─── 멤버 데이터 초기화 ───
     const reportData = {};
-
     MEMBERS.forEach((member) => {
-      const githubId = member.githubId;
-
-      reportData[githubId] = {
+      reportData[member.githubId] = {
         name: member.name,
-        discordId: member.discordId,
+        githubId: member.githubId,
         weeks: {},
         totalPRs: 0,
-        totalReviews: 0,
+        absentCount: 0,
+        lateCount: 0,
+        missedPRCount: 0,
       };
 
-      sessionData.challenges.forEach((challenge) => {
-        const w = challenge.week;
-        const absentees = challenge.absentees || [];
-        const isAbsent = absentees.includes(githubId);
-
-        reportData[githubId].weeks[w] = {
+      allWeeks.forEach((w) => {
+        reportData[member.githubId].weeks[w] = {
           pr: false,
-          reviews: 0,
-          isAbsent: isAbsent,
+          prUrl: "",
+          attendance: "present",
         };
       });
     });
 
+    // ─── 출석 반영 ───
+    MEMBERS.forEach((member) => {
+      allWeeks.forEach((w) => {
+        const weekAttendance = attendanceByWeek[w] || {};
+        const status = weekAttendance[member.name];
+        if (status === "absent") {
+          reportData[member.githubId].weeks[w].attendance = "absent";
+          reportData[member.githubId].absentCount++;
+        } else if (status === "late") {
+          reportData[member.githubId].weeks[w].attendance = "late";
+          reportData[member.githubId].lateCount++;
+        }
+      });
+    });
+
+    // ─── PR 집계 (study 주차만) ───
     const sessionPRs = await getThisWeekPRs({
       github,
       context,
       startDate: sessionStart,
-      endDate: sessionEnd,
+      endDate: sessionEndDate,
     });
-
     console.log(`세션 기간 내 PR 개수 = ${sessionPRs.length}`);
 
-    await Promise.all(
-      sessionPRs.map(async (pr) => {
-        const author = pr.user.login;
-        const createdAt = new Date(pr.created_at);
-        const weekInfo = sessionData.challenges.find((c) => {
-          const start = new Date(c.date.start);
-          const end = new Date(c.date.end);
-          return createdAt >= start && createdAt <= end;
-        });
+    sessionPRs.forEach((pr) => {
+      const author = pr.user.login;
+      const createdAt = new Date(pr.created_at);
+      const weekInfo = studyWeeks.find((c) => {
+        const start = new Date(c.date.start);
+        const end = new Date(c.date.end);
+        return createdAt >= start && createdAt <= end;
+      });
 
-        if (!weekInfo || !reportData[author]) return;
+      if (!weekInfo || !reportData[author]) return;
 
-        const weekNum = weekInfo.week;
-        reportData[author].weeks[weekNum].pr = true;
-        reportData[author].totalPRs++;
+      reportData[author].weeks[weekInfo.week].pr = true;
+      reportData[author].weeks[weekInfo.week].prUrl = pr.html_url;
+      reportData[author].totalPRs++;
+    });
 
-        const { data: reviews } = await github.rest.pulls.listReviews({
-          owner: context.repo.owner,
-          repo: context.repo.repo,
-          pull_number: pr.number,
-        });
+    // ─── PR 미제출 횟수 집계 (study 주차만) ───
+    MEMBERS.forEach((member) => {
+      studyWeeks.forEach((s) => {
+        if (!reportData[member.githubId].weeks[s.week].pr) {
+          reportData[member.githubId].missedPRCount++;
+        }
+      });
+    });
 
-        const uniqueReviewers = new Set(reviews.map((r) => r.user.login));
-        uniqueReviewers.forEach((reviewerId) => {
-          if (reportData[reviewerId] && reviewerId !== author) {
-            reportData[reviewerId].weeks[weekNum].reviews++;
-            reportData[reviewerId].totalReviews++;
-          }
-        });
-      }),
-    );
+    // ─── 보증금 정산 ───
+    const memberIds = MEMBERS.map((m) => m.githubId);
+    const settlements = {};
+    let totalPenaltyPool = 0;
 
-    const tableConfig = {
-      headers: ["이름", ...weeks.map((w) => `W${w}`), "총합"],
-      paddings: [6, ...weeks.map(() => 15), 10],
+    memberIds.forEach((id) => {
+      const s = reportData[id];
+      const penalty =
+        (s.absentCount + s.lateCount + s.missedPRCount) * PENALTY_PER_ISSUE;
+      const remaining = DEPOSIT - penalty;
+      settlements[id] = { penalty, remaining };
+      totalPenaltyPool += penalty;
+    });
+
+    const communityFund = totalPenaltyPool + INTEREST;
+
+    // ─── 활동 테이블 (5주씩 분할) ───
+    const studyWeekNums = studyWeeks.map((s) => s.week);
+    const CHUNK_SIZE = 5;
+    const weekChunks = [];
+    for (let i = 0; i < allWeeks.length; i += CHUNK_SIZE) {
+      weekChunks.push(allWeeks.slice(i, i + CHUNK_SIZE));
+    }
+
+    const activityTables = weekChunks.map((chunk) => {
+      const tableConfig = {
+        headers: ["이름", ...chunk.map((w) => `W${w}`)],
+        paddings: [6, ...chunk.map(() => 15)],
+        renderRow: (id) => {
+          const s = reportData[id];
+          const row = { name: s.name };
+
+          chunk.forEach((w) => {
+            const wData = s.weeks[w];
+            const parts = [];
+            const isStudyWeek = studyWeekNums.includes(w);
+
+            if (wData.attendance === "absent") {
+              parts.push("❌결석");
+            } else if (wData.attendance === "late") {
+              parts.push("⏰지각");
+            } else {
+              parts.push("✅출석");
+            }
+
+            if (isStudyWeek) {
+              if (wData.pr) {
+                parts.push(`✅[PR](${wData.prUrl})`);
+              } else {
+                parts.push("❌PR");
+              }
+            }
+
+            row[`week${w}`] = parts.join(" ");
+          });
+
+          return row;
+        },
+      };
+
+      return createMarkdownTable(memberIds, tableConfig);
+    });
+
+    // ─── 정산 테이블 ───
+    const settlementTableConfig = {
+      headers: ["이름", "보증금", "결석", "지각", "PR미제출", "차감", "환급액"],
+      paddings: [6, 8, 6, 6, 8, 8, 8],
       renderRow: (id) => {
         const s = reportData[id];
-        const row = { name: s.name };
-        let attendanceCount = 0;
-
-        weeks.forEach((w) => {
-          const wData = s.weeks[w];
-          const hasPR = wData.pr;
-          const hasRev = wData.reviews >= MIN_REVIEWS_REQUIRED;
-          const isAbsent = wData.isAbsent;
-          const isSuccess = hasPR && hasRev && !isAbsent;
-
-          if (isSuccess) {
-            row[`week${w}`] = "✅";
-            attendanceCount++;
-          } else {
-            const reasons = [];
-
-            if (!hasPR) reasons.push("PR");
-            if (!hasRev)
-              reasons.push(`리뷰${wData.reviews}/${MIN_REVIEWS_REQUIRED}`);
-            if (isAbsent) reasons.push("결석");
-
-            const reasonText =
-              reasons.length > 0 ? `(${reasons.join(",")})` : "";
-            row[`week${w}`] = `❌${reasonText}`;
-          }
-        });
-
-        row.total = `${s.totalPRs}PR / ${s.totalReviews}Rev / ${attendanceCount}출석`;
-        return row;
+        const st = settlements[id];
+        return {
+          name: s.name,
+          deposit: `${DEPOSIT.toLocaleString()}원`,
+          absent: `${s.absentCount}회`,
+          late: `${s.lateCount}회`,
+          missedPR: `${s.missedPRCount}회`,
+          penalty: `-${st.penalty.toLocaleString()}원`,
+          refund: `${st.remaining.toLocaleString()}원`,
+        };
       },
     };
 
-    const markdownTable = createMarkdownTable(
-      MEMBERS.map((m) => m.githubId),
-      tableConfig,
+    const settlementTable = createMarkdownTable(
+      memberIds,
+      settlementTableConfig,
     );
-    const reportTitle = `\`Project${sessionData.id}\` 스터디 활동 리포트`;
-    const reportBody = `## THIS PROJECT REPORT\n\n${markdownTable}\n\n집계 시각: ${getKSTDateString(new Date())}(KST)\n\n수고하셨습니다!`;
+
+    // ─── 리포트 생성 ───
+    const reportTitle = `\`Session${sessionData.id}\` 세션 활동 리포트`;
+    const reportBody = [
+      `## THIS SESSION REPORT`,
+      ``,
+      `**${sessionData.date.start} ~ ${sessionData.date.end}**`,
+      ``,
+      ...activityTables.flatMap((table) => [table, ``]),
+      `### 정산`,
+      ``,
+      settlementTable,
+      ``,
+      `| 항목 | 금액 |`,
+      `|------|------|`,
+      `| 차감 기준 | 결석/지각/PR미제출 1건당 -${PENALTY_PER_ISSUE.toLocaleString()}원 |`,
+      `| 차감 총액 | ${totalPenaltyPool.toLocaleString()}원 |`,
+      `| 이자 | ${INTEREST.toLocaleString()}원 |`,
+      `| 커뮤니티 운영비 | ${communityFund.toLocaleString()}원 |`,
+      ``,
+      `> 집계 시각: ${getKSTDateString(new Date())} 21:00 (KST)`,
+      ``,
+      `수고하셨습니다!`,
+    ].join("\n");
+
+    // ─── GitHub Discussion 생성 ───
+    const repository = await getRepositoryInfo({ github, context });
+    const categories = await getDiscussionCategories({ github, context });
+    const categoryReport = categories.find((cat) =>
+      cat.name.toLowerCase().includes("report"),
+    );
+
+    let thisSessionReportResult = null;
 
     if (categoryReport) {
       const thisSessionReport = await createDiscussion({
         github,
-        repoId: repoId,
+        repoId: repository.id,
         categoryId: categoryReport.id,
         title: reportTitle,
         body: reportBody,
@@ -171,18 +257,22 @@ export default async ({ github, context, core }) => {
         labelName: "report",
       });
 
-      console.log(`프로젝트 리포트 생성 완료: ${thisSessionReport.id}`);
+      console.log(`Session 리포트 생성 완료: ${thisSessionReport.id}`);
 
-      return {
+      thisSessionReportResult = {
         title: reportTitle,
         url: `https://github.com/${context.repo.owner}/${context.repo.repo}/discussions/${thisSessionReport.number}`,
+        category: { name: categoryReport.name },
       };
+    } else {
+      console.warn("report 카테고리를 찾을 수 없습니다.");
     }
 
-    console.warn("report 카테고리를 찾을 수 없습니다.");
-    return null;
+    return {
+      reportData: thisSessionReportResult,
+    };
   } catch (error) {
-    console.error("프로젝트 리포트 생성 중 에러 발생:", error.message);
+    console.error("세션 리포트 생성 중 에러 발생:", error.message);
     core.setFailed(error.message);
     throw error;
   }

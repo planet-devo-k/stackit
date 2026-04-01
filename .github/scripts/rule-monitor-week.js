@@ -124,14 +124,16 @@ export default async ({ github, context, core, test }) => {
         labelName: "report",
       });
 
+      console.log(`Week 리포트 생성 완료: ${thisWeekReport.id}`);
+
       thisWeekReportResult = {
         title: reportTitle,
         url: `https://github.com/${context.repo.owner}/${context.repo.repo}/discussions/${thisWeekReport.number}`,
         category: { name: categoryReport.name },
       };
+    } else {
+      console.warn("report 카테고리를 찾을 수 없습니다.");
     }
-
-    console.log("주간 모니터링 보고 완료");
 
     return {
       reportData: thisWeekReportResult,

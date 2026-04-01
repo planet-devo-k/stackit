@@ -135,7 +135,7 @@ export default async ({ github, context, core }) => {
       statusFieldId: PROJECT_FIELD_STATUS_ID,
       statusOptionId: PROJECT_FIELD_STATUS.IN_PROGRESS,
     });
-    console.log("Session Goal 프로젝트 연동 완료");
+    console.log("Session Goal 연동 완료");
 
     for (const { data, goal } of createdWeekGoals) {
       await syncIssueToProject({
@@ -149,7 +149,7 @@ export default async ({ github, context, core }) => {
         statusFieldId: PROJECT_FIELD_STATUS_ID,
         statusOptionId: PROJECT_FIELD_STATUS.TODO,
       });
-      console.log(`Week Goal 프로젝트 연동 완료: #${goal.number}`);
+      console.log(`Week Goal 연동 완료: #${goal.number}`);
     }
 
     // ── Sub-issue 연결 (Session ← Week) ──

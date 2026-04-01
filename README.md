@@ -143,11 +143,7 @@
 ---
 
 <p align="right">
-  <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
-    <img src="https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey.svg" alt="License: CC BY-NC-SA 4.0">
-  </a>
-  <br/>
-  <sub><b>Course Materials</b>: Copyright © Original Author. All rights reserved.</sub>
-  <br/>
-  <sub><b>Study Notes</b>: Copyright © 2026 sgoldenbird. Licensed under CC BY-NC-SA 4.0.</sub>
+  <sub><b>Original Resources</b>: Copyright © Original Author. All rights reserved.</sub>
+  <sub><b>Infrastructure & Systems</b>: © 2026 sgoldenbird. All rights reserved.</sub>
+  <sub><b>Participant Works</b>: Copyright © 2026 planet-devo-k. All rights reserved.</sub>
 </p>
