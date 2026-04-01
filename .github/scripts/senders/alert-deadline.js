@@ -20,11 +20,11 @@ export default async ({ github, context, core, data = {} }) => {
       embeds: [
         {
           title: "LAST CALL\n━━━━━━━━━━━━━━━━━━━━━━",
-          description: "아직 PR, 리뷰 못했다면 지금이 타이밍이에요!",
+          description: "아직 PR 못했다면 지금이 타이밍이에요!",
           color: 15606862,
           fields: [
             {
-              name: "\u200B",
+              name: "오늘 오후 8시까지 제출",
               value: incompleteList,
               inline: false,
             },
