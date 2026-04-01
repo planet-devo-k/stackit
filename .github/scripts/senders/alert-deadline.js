@@ -24,7 +24,7 @@ export default async ({ github, context, core, data = {} }) => {
           color: 15606862,
           fields: [
             {
-              name: "오늘 오후 8시까지 제출",
+              name: "오늘 오후 8시까지",
               value: incompleteList,
               inline: false,
             },

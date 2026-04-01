@@ -10,17 +10,30 @@ import {
   getRepositoryInfo,
 } from "./utils/github.js";
 
-export default async ({ github, context, core }) => {
+export default async ({ github, context, core, test }) => {
   try {
     const sessionData = getLatestSessionData();
-    const nowStr = getKSTDateString(new Date());
-    const currentWeekInfo = sessionData.schedule.find(
-      (s) => nowStr >= s.date.start && nowStr <= s.date.end,
-    );
 
-    if (!currentWeekInfo) {
-      console.warn(`(${nowStr})는 현재 스터디 진행 기간이 아닙니다.`);
-      return;
+    let currentWeekInfo;
+
+    if (test !== null) {
+      currentWeekInfo = sessionData.schedule.find((s) => s.week === test);
+      if (!currentWeekInfo) {
+        console.warn(`테스트 주차(${test})를 찾을 수 없습니다.`);
+        return;
+      }
+      console.log(`[테스트 모드] ${test}주차 강제 지정`);
+    } else {
+      const nowStr = getKSTDateString(new Date());
+      currentWeekInfo = sessionData.schedule.find(
+        (s) => nowStr >= s.date.start && nowStr <= s.date.end,
+      );
+      if (!currentWeekInfo) {
+        console.warn(
+          `(${getKSTDateString(new Date())})는 현재 스터디 진행 기간이 아닙니다.`,
+        );
+        return;
+      }
     }
 
     console.log(`${currentWeekInfo.week}주차 모니터링 시작`);
@@ -28,7 +41,6 @@ export default async ({ github, context, core }) => {
     const thisMonday = new Date(currentWeekInfo.date.start);
     const thisSunday = new Date(currentWeekInfo.date.end);
 
-    // ─── PR 제출 현황 조회 ───
     const thisWeekPRs = await getThisWeekPRs({
       github,
       context,
@@ -37,17 +49,15 @@ export default async ({ github, context, core }) => {
     });
     console.log(`이번주 PR 개수 = ${thisWeekPRs.length}`);
 
-    // ─── 멤버 상태 초기화 ───
-    const submittedAuthors = new Set(thisWeekPRs.map((pr) => pr.user.login));
+    const submittedMembers = new Set(thisWeekPRs.map((pr) => pr.user.login));
 
     const memberStatus = {};
     MEMBERS.forEach((member) => {
       memberStatus[member.githubId] = {
         name: member.name,
         githubId: member.githubId,
-        submitted: submittedAuthors.has(member.githubId),
+        submitted: submittedMembers.has(member.githubId),
         prUrl: "",
-        attendance: "present", // 출석은 추후 수동 반영
       };
     });
 
@@ -69,7 +79,7 @@ export default async ({ github, context, core }) => {
         const s = memberStatus[id];
         return {
           name: s.name || id,
-          prStatus: s.submitted ? "✅" : "❌",
+          prStatus: s.submitted ? `✅ [PR](${s.prUrl})` : "❌",
           attendance: "✅",
         };
       },
@@ -82,7 +92,7 @@ export default async ({ github, context, core }) => {
     const reportBody = [
       `## THIS WEEK REPORT`,
       ``,
-      `**${currentWeekInfo.title}** (${currentWeekInfo.date.start} ~ ${currentWeekInfo.date.end})`,
+      `**${currentWeekInfo.date.start} ~ ${currentWeekInfo.date.end}** ${currentWeekInfo.title}`,
       ``,
       allTable,
       ``,
