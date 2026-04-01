@@ -2,9 +2,9 @@ name: Create Goal Tracks
 
 on:
   workflow_dispatch:
-  push:
-    paths:
-      - ".github/data/session/session_*.json"
+  # push:
+  #   paths:
+  #     - ".github/data/session/session_*.json"
 
 permissions:
   contents: read

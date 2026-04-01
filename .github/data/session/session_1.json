@@ -17,7 +17,10 @@
         "start": "2026-04-26",
         "end": "2026-05-02"
       },
-      "absentees": [],
+      "attendees": [
+        { "name": "홍길동", "status": "absent", "type": "medical" },
+        { "name": "김철수", "status": "late", "type": "authorized" }
+      ],
       "topics": [
         { "name": "스터디 개요" },
         { "name": "스터디 규칙" },
@@ -32,7 +35,10 @@
         "start": "2026-05-03",
         "end": "2026-05-09"
       },
-      "absentees": [],
+      "attendees": [
+        { "name": "", "status": "absent" },
+        { "name": "", "status": "late" }
+      ],
       "topics": [
         { "chapter": 0, "section": "0-1", "name": "알고리즘이란?" },
         { "chapter": 0, "section": "0-2", "name": "계산 시간을 측정하는 방법" },
@@ -49,7 +55,10 @@
         "start": "2026-05-10",
         "end": "2026-05-16"
       },
-      "absentees": [],
+      "attendees": [
+        { "name": "", "status": "absent" },
+        { "name": "", "status": "late" }
+      ],
       "topics": [
         { "chapter": 1, "section": "1-4", "name": "스택" },
         { "chapter": 1, "section": "1-5", "name": "큐" },
@@ -66,7 +75,10 @@
         "start": "2026-05-17",
         "end": "2026-05-23"
       },
-      "absentees": [],
+      "attendees": [
+        { "name": "", "status": "absent" },
+        { "name": "", "status": "late" }
+      ],
       "topics": [
         { "chapter": 2, "section": "2-1", "name": "정렬이란?" },
         { "chapter": 2, "section": "2-2", "name": "버블 정렬" },
@@ -85,7 +97,10 @@
         "start": "2026-05-24",
         "end": "2026-05-30"
       },
-      "absentees": [],
+      "attendees": [
+        { "name": "", "status": "absent" },
+        { "name": "", "status": "late" }
+      ],
       "topics": [
         { "chapter": 3, "section": "3-1", "name": "선형 탐색" },
         { "chapter": 3, "section": "3-2", "name": "이진 탐색" },
@@ -102,7 +117,10 @@
         "start": "2026-05-31",
         "end": "2026-06-06"
       },
-      "absentees": [],
+      "attendees": [
+        { "name": "", "status": "absent" },
+        { "name": "", "status": "late" }
+      ],
       "topics": [
         { "chapter": 4, "section": "4-4", "name": "벨먼-포드 알고리즘" },
         { "chapter": 4, "section": "4-5", "name": "다익스트라 알고리즘" },
@@ -117,7 +135,10 @@
         "start": "2026-06-07",
         "end": "2026-06-13"
       },
-      "absentees": [],
+      "attendees": [
+        { "name": "", "status": "absent" },
+        { "name": "", "status": "late" }
+      ],
       "topics": [
         { "chapter": 5, "section": "5-1", "name": "보안과 알고리즘" },
         { "chapter": 5, "section": "5-2", "name": "암호의 기본" },
@@ -134,7 +155,10 @@
         "start": "2026-06-14",
         "end": "2026-06-20"
       },
-      "absentees": [],
+      "attendees": [
+        { "name": "", "status": "absent" },
+        { "name": "", "status": "late" }
+      ],
       "topics": [
         { "chapter": 5, "section": "5-6", "name": "하이브리드 암호 방식" },
         { "chapter": 5, "section": "5-7", "name": "디피-헬만 키 교환법" },
@@ -151,7 +175,10 @@
         "start": "2026-06-21",
         "end": "2026-06-27"
       },
-      "absentees": [],
+      "attendees": [
+        { "name": "", "status": "absent" },
+        { "name": "", "status": "late" }
+      ],
       "topics": [
         { "chapter": 6, "section": "6-1", "name": "클러스터링이란?" },
         { "chapter": 6, "section": "6-2", "name": "k-means 알고리즘" },
@@ -169,7 +196,10 @@
         "start": "2026-06-28",
         "end": "2026-06-28"
       },
-      "absentees": [],
+      "attendees": [
+        { "name": "", "status": "absent" },
+        { "name": "", "status": "late" }
+      ],
       "topics": [
         { "name": "회고" },
         { "name": "총 정리" },

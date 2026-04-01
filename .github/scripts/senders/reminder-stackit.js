@@ -17,7 +17,7 @@ export default async ({ github, context, core }) => {
           fields: [
             {
               name: "When",
-              value: "✓ 매주 일요일 오후 10시",
+              value: "✓ 매주 일요일 오후 9시",
             },
           ],
         },

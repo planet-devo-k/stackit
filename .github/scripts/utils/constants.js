@@ -23,7 +23,6 @@ export const MEMBERS = [
 
 export const STUDY_CONFIG = {
   RULES: {
-    // WEEKS_PER_SESSION: 10,
     // MIN_REVIEWS_REQUIRED: 2,
   },
 };

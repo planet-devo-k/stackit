@@ -6,7 +6,7 @@ export default async ({ github, context, core }) => {
 
   try {
     const discordPayload = {
-      content: `${mention} 잊지 말고 PR 생성하고 코드 리뷰 하자!`,
+      content: `${mention} 잊지 말고 PR 생성하자!`,
       allowed_mentions: {
         parse: ["everyone", "roles", "users"],
       },
@@ -17,7 +17,7 @@ export default async ({ github, context, core }) => {
           fields: [
             {
               name: "Deadline",
-              value: " ✓ PR 토요일 자정 \n ✓ 리뷰 일요일 오후 8시",
+              value: " ✓ PR 일요일 오후 8시",
             },
           ],
         },
