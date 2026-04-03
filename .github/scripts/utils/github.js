@@ -43,26 +43,37 @@ export const linkSubIssue = async ({ github, parentNodeId, subIssueId }) => {
 /**
  * PR
  */
-export const getThisWeekPRs = async ({
-  github,
-  context,
-  startDate,
-  endDate,
-}) => {
-  const allPRs = await github.paginate(github.rest.pulls.list, {
-    owner: context.repo.owner,
-    repo: context.repo.repo,
-    state: "all",
-    sort: "created",
-    direction: "desc",
+export const parseWeeksFromTitle = (title) => {
+  const weeks = [];
+  const pattern = /week\s*(\d+)/gi;
+  let match;
+  while ((match = pattern.exec(title)) !== null) {
+    weeks.push(parseInt(match[1]));
+  }
+  return weeks;
+};
+
+export const getThisWeekPRs = async ({ github, context, currentWeek }) => {
+  const { data } = await github.rest.search.issuesAndPullRequests({
+    q: `repo:${context.repo.owner}/${context.repo.repo} is:pr "week" in:title`,
     per_page: 100,
   });
 
-  console.log(`총 ${allPRs.length}개의 PR을 발견했습니다.`);
+  return data.items.filter((pr) => {
+    const weeks = parseWeeksFromTitle(pr.title);
+    return weeks.includes(currentWeek);
+  });
+};
 
-  return allPRs.filter((pr) => {
-    const createdAt = new Date(pr.created_at);
-    return createdAt >= startDate && createdAt <= endDate;
+export const getThisSessionPRs = async ({ github, context, weeks }) => {
+  const { data } = await github.rest.search.issuesAndPullRequests({
+    q: `repo:${context.repo.owner}/${context.repo.repo} is:pr "week" in:title`,
+    per_page: 100,
+  });
+
+  return data.items.filter((pr) => {
+    const prWeeks = parseWeeksFromTitle(pr.title);
+    return prWeeks.some((w) => weeks.includes(w));
   });
 };
 

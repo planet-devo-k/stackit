@@ -38,14 +38,10 @@ export default async ({ github, context, core, test }) => {
 
     console.log(`${currentWeekInfo.week}주차 모니터링 시작`);
 
-    const thisMonday = new Date(currentWeekInfo.date.start);
-    const thisSunday = new Date(currentWeekInfo.date.end);
-
     const thisWeekPRs = await getThisWeekPRs({
       github,
       context,
-      startDate: thisMonday,
-      endDate: thisSunday,
+      currentWeek: currentWeekInfo.week,
     });
     console.log(`이번주 PR 개수 = ${thisWeekPRs.length}`);
 

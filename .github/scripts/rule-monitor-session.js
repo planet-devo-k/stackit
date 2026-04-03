@@ -6,7 +6,8 @@ import {
   createDiscussion,
   getRepositoryInfo,
   getDiscussionCategories,
-  getThisWeekPRs,
+  getThisSessionPRs,
+  parseWeeksFromTitle,
   addLabelByName,
 } from "./utils/github.js";
 
@@ -31,8 +32,6 @@ export default async ({ github, context, core, test }) => {
       `세션 ${sessionData.id} 리포트 작성 시작 (${sessionData.date.start} ~ ${sessionData.date.end})`,
     );
 
-    const sessionStart = new Date(sessionData.date.start);
-    const sessionEndDate = new Date(sessionData.date.end);
     const schedule = sessionData.schedule;
     const studyWeeks = schedule.filter((s) => s.type === "study");
     const allWeeks = schedule.map((s) => s.week);
@@ -91,21 +90,18 @@ export default async ({ github, context, core, test }) => {
     const sessionPRs = await getThisWeekPRs({
       github,
       context,
-      startDate: sessionStart,
-      endDate: sessionEndDate,
+      weeks: sessionData.weeks,
     });
     console.log(`세션 기간 내 PR 개수 = ${sessionPRs.length}`);
 
     sessionPRs.forEach((pr) => {
       const author = pr.user.login;
-      const createdAt = new Date(pr.created_at);
-      const weekInfo = studyWeeks.find((c) => {
-        const start = new Date(c.date.start);
-        const end = new Date(c.date.end);
-        return createdAt >= start && createdAt <= end;
-      });
+      const prWeeks = parseWeeksFromTitle(pr.title);
+      if (prWeeks.length === 0 || !reportData[author]) return;
 
-      if (!weekInfo || !reportData[author]) return;
+      const weekNum = Math.max(...prWeeks);
+      const isStudyWeek = studyWeeks.some((s) => s.week === weekNum);
+      if (!isStudyWeek) return;
 
       reportData[author].weeks[weekInfo.week].pr = true;
       reportData[author].weeks[weekInfo.week].prUrl = pr.html_url;
@@ -136,6 +132,7 @@ export default async ({ github, context, core, test }) => {
     });
 
     const communityFund = totalPenaltyPool + INTEREST;
+    const communityFundPerMember = Math.floor(communityFund / MEMBERS.length);
 
     // ─── 활동 테이블 (5주씩 분할) ───
     const studyWeekNums = studyWeeks.map((s) => s.week);
@@ -222,10 +219,11 @@ export default async ({ github, context, core, test }) => {
       ``,
       `| 항목 | 금액 |`,
       `|------|------|`,
-      `| 차감 기준 | 결석/지각/PR미제출 1건당 -${PENALTY_PER_ISSUE.toLocaleString()}원 |`,
+      `| 차감 기준 | 결석/PR미제출 1건당 -${PENALTY_PER_ISSUE.toLocaleString()}원 |`,
       `| 차감 총액 | ${totalPenaltyPool.toLocaleString()}원 |`,
       `| 이자 | ${INTEREST.toLocaleString()}원 |`,
-      `| 커뮤니티 운영비 | ${communityFund.toLocaleString()}원 |`,
+      `| 총 적립금 | ${communityFund.toLocaleString()}원 |`,
+      `| 분배금 (1인당) | ${communityFundPerMember.toLocaleString()}원 |`,
       ``,
       `> 집계 시각: ${getKSTDateString(new Date())} 21:00 (KST)`,
       ``,
