@@ -1,0 +1,17 @@
+name: Trigger PR Automation
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  dispatch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger automation repo
+        uses: peter-evans/repository-dispatch@v3
+        with:
+          token: ${{ secrets.GH_PAT_PLANET_DEVO_K }}
+          repository: planet-devo-k/automation
+          event-type: stackit-pr-opened
+          client-payload: '{"pull_request": ${{ toJson(github.event.pull_request) }}}'
