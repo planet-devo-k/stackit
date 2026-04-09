@@ -73,6 +73,8 @@
 
 ## Rules
 
+> **세부 정책은 트랙마다 상이할 수 있으니, 자세한 내용은 해당 트랙의 리드미를 반드시 확인해주세요.**
+
 **Ground Rules**
 
 - [PLANET DEVO K GROUND RULES](https://github.com/planet-devo-k#ground-rules)
@@ -81,7 +83,6 @@
 
 - 트랙 중도 하차 불가
 - 룰을 위반할 경우 보증금 차감
-- 보증금 상세 액수 및 세부 정책은 트랙마다 상이할 수 있으니, 해당 트랙의 리드미를 반드시 확인해주세요.
 
 **Branch & Directory**
 
@@ -91,7 +92,6 @@
 **PR**
 
 - 매주 `main` 브랜치로 PR을 제출합니다.
-- PR 세부 정책은 트랙마다 상이할 수 있으니, 자세한 내용은 해당 트랙의 리드미를 반드시 확인해주세요.
 
 **Issue**
 
@@ -121,6 +121,11 @@
   <td><code>study:#~# </code></td>
   <td><strong>챕터별 정리 추가</strong><br />신규 학습 내용 업로드</td>
   <td><code>study: 1.1 ~ 3.6 정리</code></td>
+  </tr>
+  <tr>
+  <td><code>solve: </code></td>
+  <td><strong>챕터별 챌린지 풀이</strong><br />해결한 챌린지 업로드</td>
+  <td><code>solve: week1 algorithm challenges</code></td>
   </tr>
   <tr>
   <td><code>update:</code></td>

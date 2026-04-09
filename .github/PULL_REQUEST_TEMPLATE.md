@@ -1,9 +1,3 @@
----
-name: Pull Request Template
-about: "Use this template for creating a pull request."
-title: "`Week`"
----
-
 ## Learning Summary & Retrospective
 
 <!-- 이번 주차에서 가장 중요하게 다룬 핵심 개념 및 느낀점을 간단히 적어주세요. -->
@@ -20,7 +14,7 @@ title: "`Week`"
 - [ ] 커밋 메시지를 규칙에 맞게 작성했습니다.
 - [ ] PR 제목을 `Week1` 1.7-2 와 같이 스터디 범위로 시작했습니다.
 - [ ] 본인을 Assignee로 지정했습니다.
-- [ ] 알맞은 라벨을 지정했습니다. e.g. 도감 | 누구나
+- [ ] 알맞은 라벨을 지정했습니다. e.g. 도감 | 누구나 | DA | Techniques/Algorithms
 - [ ] Projects에 연결하지 **마세요.**
 - [ ] Milestone에 연결하지 **마세요.**
 - [ ] 질문이 있는 경우 question 라벨을 지정했습니다.
