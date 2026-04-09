@@ -1,5 +1,5 @@
 <p align="right">
-  <a href="https://discord.gg/8vn2pZ6p">
+  <a href="https://discord.gg/ucQ3P6ZdjN">
     <img src="https://img.shields.io/discord/1374753887902498929?color=7289DA&label=Join%20Community&logo=discord&logoColor=white&style=for-the-badge" alt="Discord Join">
   </a>
 </p>
