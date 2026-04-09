@@ -1,9 +1,3 @@
----
-name: Pull Request Template
-about: "Use this template for creating a pull request."
-title: "`Week`"
----
-
 ## Learning Summary & Retrospective
 
 <!-- 이번 주차에서 가장 중요하게 다룬 핵심 개념 및 느낀점을 간단히 적어주세요. -->
@@ -24,7 +18,7 @@ title: "`Week`"
 - [ ] Projects에 연결하지 **마세요.**
 - [ ] Milestone에 연결하지 **마세요.**
 - [ ] 질문이 있는 경우 question 라벨을 지정했습니다.
-- [ ] Development에 해당 주차(week) 이슈를 연결했습니다.
+- [ ] Development에 해당 주차(week) 이슈(goal, challenge)를 연결했습니다.
 
 ## Reference
 
