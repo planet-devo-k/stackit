@@ -102,7 +102,10 @@
 <!--
 - 송시은 [sgoldenbird](https://github.com/sgoldenbird)
 - 손수진 [pappaya109](https://github.com/pappaya109)
-- 전유진 [yuj2n](https://github.com/yuj2n)
+- 김훈민 [gnsals0904](https://github.com/gnsals0904)
+- 송유진 [0000yuyu](https://github.com/0000yuyu)
+- 이주원 [santa1327](https://github.com/santa1327)
+- 추영광 [S-DPR](https://github.com/S-DPR)
 -->
 
 ## [Structure & Workflow](../README.md#structure--workflow)
