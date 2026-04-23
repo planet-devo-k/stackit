@@ -43,8 +43,10 @@
 <!--
 - 송시은 [sgoldenbird](https://github.com/sgoldenbird)
 - 손수진 [pappaya109](https://github.com/pappaya109)
-- 조인성 [Insung-Jo](https://github.com/Insung-Jo)
-- 전유진 [yuj2n](https://github.com/yuj2n)
+- 김훈민 [gnsals0904](https://github.com/gnsals0904)
+- 송유진 [0000yuyu](https://github.com/0000yuyu)
+- 이주원 [santa1327](https://github.com/santa1327)
+- 추영광 [S-DPR](https://github.com/S-DPR)
 -->
 
 ## Structure & Workflow
@@ -149,6 +151,6 @@
 
 <p align="right">
   <sub><b>Original Resources</b>: Copyright © Original Author. All rights reserved.</sub><br/>
-  <sub><b>Infrastructure & Systems</b>: © 2026 sgoldenbird. All rights reserved.</sub><br/>
+  <sub><b>Infrastructure & Systems</b>: Copyright © 2026 sgoldenbird. All rights reserved.</sub><br/>
   <sub><b>Participant Works</b>: Copyright © 2026 planet-devo-k. All rights reserved.</sub><br/>
 </p>
