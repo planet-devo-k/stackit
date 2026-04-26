@@ -1,5 +1,5 @@
 <p align="right">
-  <a href="https://discord.gg/8vn2pZ6p">
+  <a href="https://discord.gg/ucQ3P6ZdjN">
     <img src="https://img.shields.io/discord/1374753887902498929?color=7289DA&label=Join%20Community&logo=discord&logoColor=white&style=for-the-badge" alt="Discord Join">
   </a>
 </p>
@@ -43,8 +43,10 @@
 <!--
 - 송시은 [sgoldenbird](https://github.com/sgoldenbird)
 - 손수진 [pappaya109](https://github.com/pappaya109)
-- 조인성 [Insung-Jo](https://github.com/Insung-Jo)
-- 전유진 [yuj2n](https://github.com/yuj2n)
+- 김훈민 [gnsals0904](https://github.com/gnsals0904)
+- 송유진 [0000yuyu](https://github.com/0000yuyu)
+- 이주원 [santa1327](https://github.com/santa1327)
+- 추영광 [S-DPR](https://github.com/S-DPR)
 -->
 
 ## Structure & Workflow
@@ -73,6 +75,8 @@
 
 ## Rules
 
+> **세부 정책은 트랙마다 상이할 수 있으니, 자세한 내용은 해당 트랙의 리드미를 반드시 확인해주세요.**
+
 **Ground Rules**
 
 - [PLANET DEVO K GROUND RULES](https://github.com/planet-devo-k#ground-rules)
@@ -81,7 +85,6 @@
 
 - 트랙 중도 하차 불가
 - 룰을 위반할 경우 보증금 차감
-- 보증금 상세 액수 및 세부 정책은 트랙마다 상이할 수 있으니, 해당 트랙의 리드미를 반드시 확인해주세요.
 
 **Branch & Directory**
 
@@ -91,7 +94,6 @@
 **PR**
 
 - 매주 `main` 브랜치로 PR을 제출합니다.
-- PR 세부 정책은 트랙마다 상이할 수 있으니, 자세한 내용은 해당 트랙의 리드미를 반드시 확인해주세요.
 
 **Issue**
 
@@ -123,6 +125,11 @@
   <td><code>study: 1.1 ~ 3.6 정리</code></td>
   </tr>
   <tr>
+  <td><code>solve: </code></td>
+  <td><strong>챕터별 챌린지 풀이</strong><br />해결한 챌린지 업로드</td>
+  <td><code>solve: week1 algorithm challenges</code></td>
+  </tr>
+  <tr>
   <td><code>update:</code></td>
   <td><strong>정리 보강/수정</strong><br />내용 확장, 예제 추가, 오타 수정</td>
   <td><code>update: ch2 예시 추가</code></td>
@@ -143,7 +150,7 @@
 ---
 
 <p align="right">
-  <sub><b>Original Resources</b>: Copyright © Original Author. All rights reserved.</sub>
-  <sub><b>Infrastructure & Systems</b>: © 2026 sgoldenbird. All rights reserved.</sub>
-  <sub><b>Participant Works</b>: Copyright © 2026 planet-devo-k. All rights reserved.</sub>
+  <sub><b>Original Resources</b>: Copyright © Original Author. All rights reserved.</sub><br/>
+  <sub><b>Infrastructure & Systems</b>: Copyright © 2026 sgoldenbird. All rights reserved.</sub><br/>
+  <sub><b>Participant Works</b>: Copyright © 2026 planet-devo-k. All rights reserved.</sub><br/>
 </p>
