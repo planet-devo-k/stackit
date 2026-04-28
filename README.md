@@ -122,7 +122,10 @@
   <tr>
   <td><code>study:#~# </code></td>
   <td><strong>챕터별 정리 추가</strong><br />신규 학습 내용 업로드</td>
-  <td><code>study: 1.1 ~ 3.6 정리</code></td>
+  <td>
+  <code>study: 1.1 ~ 3.6 정리</code><br/>
+  <code>study: week1 정리</code>
+  </td>
   </tr>
   <tr>
   <td><code>solve: </code></td>
