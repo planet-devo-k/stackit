@@ -157,3 +157,44 @@
 - 정산
   - 정산은 세션 마지막 날 진행합니다.
   - 모인 패널티 금액은 참여자 수로 나누어 분배합니다.
+
+**Commit**
+
+  <table>
+  <thead>
+  <tr>
+  <th >Type</th>
+  <th >Description</th>
+  <th>Example</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+  <td><code>study: </code></td>
+  <td><strong>주차별 정리 추가</strong><br />신규 학습 내용 업로드</td>
+  <td>
+  <code>study: week1 정리</code>
+  </td>
+  </tr>
+  <tr>
+  <td><code>solve: </code></td>
+  <td><strong>주차별 알고리즘 챌린지 풀이</strong><br />해결한 챌린지 업로드</td>
+  <td><code>solve: week1 challenges</code></td>
+  </tr>
+  <tr>
+  <td><code>update:</code></td>
+  <td><strong>정리 보강/수정</strong><br />내용 확장, 예제 추가, 오타 수정</td>
+  <td><code>update: ch2 예시 추가</code></td>
+  </tr>
+  <tr>
+  <td><code>docs:</code></td>
+  <td><strong>메인 문서 관리</strong><br />README 업데이트</td>
+  <td><code>docs: update README</code></td>
+  </tr>
+  <tr>
+  <td><code>chore:</code></td>
+  <td><strong>기타 변경 사항</strong><br /></td>
+  <td><code>chore: update package dependencies</code></td>
+  </tr>
+  </tbody>
+  </table>
