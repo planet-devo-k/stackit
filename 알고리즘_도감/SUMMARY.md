@@ -7,9 +7,9 @@
   - [Week1 Challenges](./sgoldenbird/week1.js)
 
 - 수진
-
+  - [Week1](./sujin/week1.md)
+  - [Week1 Challenges](./sujin/week1.js)
 
 - 유진
 
-
-- 훈민 
+- 훈민
