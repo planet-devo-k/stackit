@@ -138,7 +138,7 @@
 
 - 개인 브랜치와 폴더를 사용하며, 내부 파일은 아래 형식을 유지합니다.
   - [username]/week1.md, week1.js(.py...)
-  - 챌린지 풀이 함수명 challenge1, challenge2 ...
+  - 챌린지 풀이 함수명 solution1, solution2 ...
 
 **PR**
 
