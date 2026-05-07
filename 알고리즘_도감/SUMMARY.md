@@ -8,9 +8,12 @@
   - [Week2](./sgoldenbird/week2.md)
 
 - 수진
-
+  - [Week1](./sujin/week1.md)
+  - [Week1 Challenges](./sujin/week1.js)
 
 - 유진
 
 
-- 훈민 
+- 훈민
+  - [Week1](./gnsals0904/week1.md)
+  - [Week1 Challenges](./gnsals0904/week1.java)
