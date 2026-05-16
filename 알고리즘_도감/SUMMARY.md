@@ -12,7 +12,6 @@
 
 - 유진
     - [Week2](./0000yuyu/week2.md)
-    - [Week3](./0000yuyu/week3.md)
 
 - 훈민
     - [Week1](./gnsals0904/week1.md)
