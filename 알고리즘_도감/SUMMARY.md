@@ -18,3 +18,4 @@
 - 훈민
   - [Week1](./gnsals0904/week1.md)
   - [Week2](./gnsals0904/week2.md)
+  - [Week3](./gnsals0904/week3.md)
