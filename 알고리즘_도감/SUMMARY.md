@@ -7,6 +7,7 @@
   - [Week1](./sgoldenbird/week1.md)
   - [Week2](./sgoldenbird/week2.md)
   - [Week3 정렬](./sgoldenbird/week3.md)
+  - [Week4 탐색1](./sgoldenbird/week4.md)
 
 - 수진
 
