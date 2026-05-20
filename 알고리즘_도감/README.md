@@ -9,7 +9,7 @@
 **리소스**
 
 - 책: 알고리즘 도감(도서, 앱) by 이시다 모리테루, 미야자키 쇼이치
-- 툴: 깃북, 필요에 따라 머메이드, 옵시디언 등 자율적으로 활용
+- 툴: 깃북, [USF Algorithms Visualization](https://www.cs.usfca.edu/~galles/visualization/Algorithms.html), 필요에 따라 머메이드, 옵시디언 등 자율적으로 활용
 
 **운영**
 
