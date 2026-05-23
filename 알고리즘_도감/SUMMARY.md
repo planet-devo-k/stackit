@@ -20,3 +20,4 @@
   - [Week1](./gnsals0904/week1.md)
   - [Week2](./gnsals0904/week2.md)
   - [Week3](./gnsals0904/week3.md)
+  - [Week4](./gnsals0904/week4.md)
