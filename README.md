@@ -5,11 +5,11 @@
 </p>
 
 <h1 align="center">STACKIT</h1>
-<p align="center">천천히, 그러나 확실하게 나아가는 DSA 트랙</p>
+<p align="center">천천히, 그러나 확실하게 나아가는 CS 트랙</p>
 
 ## Introduction
 
-자료구조와 알고리즘의 기초를 다지고 심화학습으로 나아가는 스터디입니다.
+컴퓨터 공학의 기초를 다지고 심화학습으로 나아가는 스터디입니다.
 <br/>
 📌 **진행 상황**은 [Milestones](https://github.com/planet-devo-k/stackit/milestones)와 [Roadmap](https://github.com/orgs/planet-devo-k/projects/4/views/4)을 참고하세요.
 
@@ -20,7 +20,7 @@
     <tr>
       <th>Track</th>
       <th>Period</th>
-      <th>Domain</th>
+      <th>Category</th>
       <th>Source</th>
       <th>Description</th>
       <th>Document</th>
