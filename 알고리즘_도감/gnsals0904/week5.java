@@ -31,9 +31,21 @@ class week5 {
             {'.', '.', '.'}
         };
 
-        System.out.println(solution1(4, bellmanFordEdges));
+        char[][] map2 = new char[][] {
+                {'S', '#', 'E'},
+                {'.', '.', '.'},
+                {'.', '.', '.'}
+        };
+
+        try {
+            System.out.println(solution1(4, bellmanFordEdges));
+        } catch (RuntimeException e) {
+            System.out.println(e.getMessage());
+        }
+
         System.out.println(solution2(5, dijkstraEdges));
         System.out.println(solution3(map));
+        System.out.println(solution3(map2));
     }
 
     /**
