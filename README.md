@@ -11,7 +11,7 @@
 
 컴퓨터 공학의 기초를 다지고 심화학습으로 나아가는 스터디입니다.
 <br/>
-📌 **진행 상황**은 [Milestones](https://github.com/planet-devo-k/stackit/milestones)와 [Roadmap](https://github.com/orgs/planet-devo-k/projects/4/views/4)을 참고하세요.
+**진행 상황**은 [Milestones](https://github.com/planet-devo-k/stackit/milestones)와 [Roadmap](https://github.com/orgs/planet-devo-k/projects/4/views/4)을 참고하세요.
 
 ## Tracks
 
