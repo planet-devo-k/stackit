@@ -10,7 +10,8 @@
   - [Week4 탐색1](./sgoldenbird/week4.md)
   - [Week5 탐색2 최단경로](./sgoldenbird/week5.md)
   - [Week6-7 보안](./sgoldenbird/week6-7.md)
-  - [Week8](./sgoldenbird/week8.md)
+  - [Week8-1](./sgoldenbird/week8-1.md)
+  - [Week8-2](./sgoldenbird/week8-2.md)
 
 - 수진
 
