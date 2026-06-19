@@ -36,6 +36,16 @@
       <td><a href="./알고리즘_도감/README.md">View Link</a></td>
     </tr>
   </tbody>
+  <tbody>
+    <tr>
+      <td><strong>누구나</strong></td>
+      <td>2026.07 ~ 2026.11</td>
+      <td><code>CS, DSA</code></td>
+      <td>누구나 자료구조와 알고리즘</td>
+      <td>자료구조와 알고리즘의 핵심 원리를 학습하고 예시와 연습문제를 통해 기초 점검, 실전 응용력 향상</td>
+      <td><a href="./누구나/README.md">View Link</a></td>
+    </tr>
+  </tbody>
 </table>
 
 ## Members
