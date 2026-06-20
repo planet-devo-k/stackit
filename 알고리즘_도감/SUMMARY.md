@@ -18,6 +18,7 @@
     - [Week4](./0000yuyu/week4.md)
     - [Week6](./0000yuyu/week6.md)
     - [Week7](./0000yuyu/week7.md)
+    - [Week8](./0000yuyu/week8.md)
 
 - 훈민
     - [Week1](./gnsals0904/week1.md)
