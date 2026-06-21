@@ -5,13 +5,13 @@
 </p>
 
 <h1 align="center">STACKIT</h1>
-<p align="center">천천히, 그러나 확실하게 나아가는 DSA 트랙</p>
+<p align="center">천천히, 그러나 확실하게 나아가는 CS 트랙</p>
 
 ## Introduction
 
-자료구조와 알고리즘의 기초를 다지고 심화학습으로 나아가는 스터디입니다.
+컴퓨터 공학의 기초를 다지고 심화학습으로 나아가는 스터디입니다.
 <br/>
-📌 **진행 상황**은 [Milestones](https://github.com/planet-devo-k/stackit/milestones)와 [Roadmap](https://github.com/orgs/planet-devo-k/projects/4/views/4)을 참고하세요.
+**진행 상황**은 [Milestones](https://github.com/planet-devo-k/stackit/milestones)와 [Roadmap](https://github.com/orgs/planet-devo-k/projects/4/views/4)을 참고하세요.
 
 ## Tracks
 
@@ -20,7 +20,7 @@
     <tr>
       <th>Track</th>
       <th>Period</th>
-      <th>Domain</th>
+      <th>Category</th>
       <th>Source</th>
       <th>Description</th>
       <th>Document</th>
@@ -36,18 +36,24 @@
       <td><a href="./알고리즘_도감/README.md">View Link</a></td>
     </tr>
   </tbody>
+  <tbody>
+    <tr>
+      <td><strong>누구나</strong></td>
+      <td>2026.07 ~ 2026.11</td>
+      <td><code>CS, DSA</code></td>
+      <td>누구나 자료구조와 알고리즘</td>
+      <td>자료구조와 알고리즘의 핵심 원리를 학습하고 예시와 연습문제를 통해 기초 점검, 실전 응용력 향상</td>
+      <td><a href="./누구나/README.md">View Link</a></td>
+    </tr>
+  </tbody>
 </table>
 
 ## Members
 
-<!--
-- 송시은 [sgoldenbird](https://github.com/sgoldenbird)
+- 송시은 [sgoldenbird](https://github.com/sgoldenbird) ⚡
 - 손수진 [pappaya109](https://github.com/pappaya109)
 - 김훈민 [gnsals0904](https://github.com/gnsals0904)
 - 송유진 [0000yuyu](https://github.com/0000yuyu)
-- 이주원 [santa1327](https://github.com/santa1327)
-- 추영광 [S-DPR](https://github.com/S-DPR)
--->
 
 ## Structure & Workflow
 

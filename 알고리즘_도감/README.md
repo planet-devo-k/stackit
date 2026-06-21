@@ -9,7 +9,7 @@
 **리소스**
 
 - 책: 알고리즘 도감(도서, 앱) by 이시다 모리테루, 미야자키 쇼이치
-- 툴: 깃북, 필요에 따라 머메이드, 옵시디언 등 자율적으로 활용
+- 툴: 깃북, [USF Algorithms Visualization](https://www.cs.usfca.edu/~galles/visualization/Algorithms.html), 필요에 따라 머메이드, 옵시디언 등 자율적으로 활용
 
 **운영**
 
@@ -99,7 +99,7 @@
 
 ## Members
 
-- 송시은 [sgoldenbird](https://github.com/sgoldenbird)
+- 송시은 [sgoldenbird](https://github.com/sgoldenbird) ⚡
 - 손수진 [pappaya109](https://github.com/pappaya109)
 - 김훈민 [gnsals0904](https://github.com/gnsals0904)
 - 송유진 [0000yuyu](https://github.com/0000yuyu)
@@ -138,7 +138,7 @@
 
 - 개인 브랜치와 폴더를 사용하며, 내부 파일은 아래 형식을 유지합니다.
   - [username]/week1.md, week1.js(.py...)
-  - 챌린지 풀이 함수명 challenge1, challenge2 ...
+  - 챌린지 풀이 함수명 solution1, solution2 ...
 
 **PR**
 
