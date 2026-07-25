@@ -10,7 +10,7 @@
 - 훈민
   - [자료구조](./gnsals0904/week1.md)
   - [알고리즘](./gnsals0904/week2.md)
-
+  - [빅 오 표기법](./gnsals0904/week3.md)
 - 상민
   - [자료구조, 알고리즘](./LSmin04/week1-2.md)
 
