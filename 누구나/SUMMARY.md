@@ -5,6 +5,7 @@
 - 시은
   - [자료구조, 알고리즘](./sgoldenbird/week1-2.md)
   - [빅 오 표기법](./sgoldenbird/week3.md)
+  - [빅 오로 코드 속도 올리기 - 정렬 알고리즘](./sgoldenbird/week4.md)
 - 훈민
 
 - 상민
