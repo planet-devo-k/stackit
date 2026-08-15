@@ -54,6 +54,7 @@
 - 손수진 [pappaya109](https://github.com/pappaya109)
 - 김훈민 [gnsals0904](https://github.com/gnsals0904)
 - 송유진 [0000yuyu](https://github.com/0000yuyu)
+- 이상민 [LSmin04](https://github.com/LSmin04)
 
 ## Structure & Workflow
 
