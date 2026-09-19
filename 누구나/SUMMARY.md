@@ -19,6 +19,8 @@
   - [해시 테이블로 매우 빠른 룩업](./gnsals0904/week7.md)
   - [스택과 큐로 간결한 코드 생성](./gnsals0904/week8.md)
   - [재귀를 사용한 재귀적 반복](./gnsals0904/week9.md)
+  - [재귀적으로 작성하는 법](./gnsals0904/week10.md)
+  - [동적 프로그래밍](./gnsals0904/week11.md)
 - 상민
   - [자료구조, 알고리즘](./LSmin04/week1-2.md)
   - [빅 오 표기법](./LSmin04/week3.md)
